@@ -9,6 +9,12 @@ A local, multi-agent academic helpdesk built with **Google ADK** and **Ollama** 
 
 Everything runs offline on a 16 GB laptop.
 
+**Team:** Balijapalli Arin Patel (B23CM1009), Bure Siddardha (B23CM1011), Aarav Dawer Bhojwani (B23CM1002), Kanishk Singh Dayma (B23CS1024)
+
+**Deliverables:** code (`helpdesk/`, `helpdesk_agent/`), this README, the question set (`eval/questions.json`, 30 questions), the report (`REPORT.pdf`), and raw evaluation results (`eval/results/`).
+
+> Due to resource constraints (an Apple M1 Mac with 8 GB RAM), the reported evaluation uses the 4B-parameter `qwen3:4b-instruct-2507` model, with `llama3.2:3b` as the replacement LLM. The code defaults to `qwen3:8b` for 16 GB machines.
+
 ## Architecture
 
 ```
@@ -37,7 +43,7 @@ Everything runs offline on a 16 GB laptop.
 | LLM | Ollama via `LiteLlm("ollama_chat/<model>")`. Default `qwen3:8b` (alt. `llama3.1:8b`) for 16 GB; `qwen3:4b-instruct-2507-q4_K_M` / `llama3.2:3b` for 8 GB |
 | Embeddings | `nomic-embed-text` via Ollama (with `search_document:` / `search_query:` prefixes) |
 | Vector store | ChromaDB (persistent, cosine), page-aware chunks of ~1,200 chars with 200 overlap |
-| Retrieval | Hybrid: dense top-20 + BM25 top-20, fused with Reciprocal Rank Fusion → top 5 |
+| Retrieval | Hybrid: dense top-20 + BM25 top-20, fused with Reciprocal Rank Fusion → top 6 |
 | Unanswered log | `logs/unanswered_questions.jsonl`, written by the agents' tool **plus** a runner safety net that logs any refusal the model forgot to log |
 
 ### Tools (`helpdesk/tools.py`)
