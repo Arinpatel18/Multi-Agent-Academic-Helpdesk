@@ -1,5 +1,14 @@
 # Multi-Agent Academic Helpdesk: Evaluation Report
 
+**Team members**
+
+| Name | Roll number |
+|---|---|
+| Balijapalli Arin Patel | B23CM1009 |
+| Bure Siddardha | B23CM1011 |
+| Aarav Dawer Bhojwani | B23CM1002 |
+| Kanishk Singh Dayma | B23CS1024 |
+
 **Repository:** https://github.com/Arinpatel18/Multi-Agent-Academic-Helpdesk
 **Raw traces and full tables:** `eval/results/` (`RESULTS.md`, `per_question.csv`, `run*.jsonl`)
 
@@ -7,7 +16,9 @@
 
 We built an IIT Jodhpur academic helpdesk with Google ADK, Ollama models (through ADK's LiteLLM connector), and a ChromaDB RAG pipeline over 27 documents. A single-agent baseline was extended to a multi-agent system: an orchestrator transfers each question to a **policy**, **schedule** or **email** agent. We evaluated it on 30 questions, with 3 repeated runs per configuration.
 
-Key results (small models on an 8 GB laptop; see §4.1 for why):
+**Resource constraints:** the assignment suggests 8B models on a 16 GB machine. Our only available machine was an **Apple M1 Mac with 8 GB RAM**, where an 8B model could not run at a usable speed. We therefore used a **4B-parameter model (Qwen3-4B-Instruct)** as the main model, and a 3B model (Llama 3.2) for the model-replacement comparison (§4.1). The code supports 8B models unchanged.
+
+Key results:
 
 | Configuration | Accuracy | Correct & grounded | Correct refusals (out-of-scope) | False refusals | Routing |
 |---|---|---|---|---|---|
@@ -56,9 +67,11 @@ The single-agent baseline (`--mode single`) is one `LlmAgent` with all seven too
 
 ## 4. Evaluation method
 
-### 4.1 Hardware note
+### 4.1 Resource constraints: 4B model on an M1 Mac
 
-The assignment targets 8B models on a 16 GB machine. The development laptop has **8 GB RAM** (Apple M1, with Docker running), where `qwen3:8b` ran at **0.02 tokens/s** because of swapping. The results below therefore use 3–4B models that fit in memory. The code defaults to `qwen3:8b`, and `./run_evaluation.sh` reproduces the full study with `qwen3:8b` and `llama3.1:8b` on a 16 GB machine (§6).
+The assignment targets 8B models on a 16 GB machine. Due to resource constraints, all experiments were run on an **Apple M1 Mac with 8 GB of unified memory**. We tried `qwen3:8b` first: its 5.2 GB of weights plus the context cache did not fit alongside the operating system, so the machine swapped heavily and generated **0.02 tokens/s** (one 30-token answer took 24 minutes).
+
+We therefore used the **4B-parameter `qwen3:4b-instruct-2507` (4-bit, about 3.8 GB)** as the main model. It runs fully on the M1 GPU at 10–40 s per question. The model-replacement comparison uses `llama3.2:3b`. The code defaults to `qwen3:8b`, and `./run_evaluation.sh` reproduces the full study with `qwen3:8b` and `llama3.1:8b` on a 16 GB machine (§6).
 
 We also had to choose the qwen3 build carefully. Plain `qwen3:4b` is a thinking-only build: it ignored `think=false` and took about 200 s per question. `qwen3:4b-instruct-2507` needs about 20–30 s.
 
@@ -89,13 +102,23 @@ All five example questions from the assignment are included (P01, P02, S01, S02,
 
 ### 5.1 Overall
 
-| Config | Runs | Accuracy | Policy | Schedule | Email | Grounded | Correct & grounded | OOS refused | OOS logged by agent | False refusal | Routing | Mean latency |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| qwen3-4b-instruct, multi | 3 | 88% (63/72) | 85% | 86% | 100% | 83% | 83% | 100% (18/18) | 0% | 8% | 100% | 25.9 s |
-| qwen3-4b-instruct, single | 1 | 50% (12/24) | 46% | 71% | 25% | 67% | 50% | 100% (6/6) | 0% | 33% | – | 21.5 s |
-| llama3.2:3b, multi | 3 | 39% (28/72) | 44% | 43% | 17% | 50% | 38% | 100% (18/18) | 100% | 36% | 64% | 11.6 s |
+**Accuracy** (in-scope questions, all runs pooled):
 
-The five assignment example questions were all answered correctly and with citations by qwen3-4b-instruct multi-agent, in all 3 runs:
+| Configuration | Runs | Overall | Policy | Schedule | Email | Grounded | Correct & grounded |
+|---|---|---|---|---|---|---|---|
+| qwen3-4b-instruct, multi | 3 | 88% (63/72) | 85% | 86% | 100% | 83% | 83% |
+| qwen3-4b-instruct, single | 1 | 50% (12/24) | 46% | 71% | 25% | 67% | 50% |
+| llama3.2:3b, multi | 3 | 39% (28/72) | 44% | 43% | 17% | 50% | 38% |
+
+**Refusals, routing and speed:**
+
+| Configuration | Out-of-scope refused | Out-of-scope logged by agent | False refusals | Routing | Mean latency |
+|---|---|---|---|---|---|
+| qwen3-4b-instruct, multi | 100% (18/18) | 0% | 8% | 100% | 25.9 s |
+| qwen3-4b-instruct, single | 100% (6/6) | 0% | 33% | – | 21.5 s |
+| llama3.2:3b, multi | 100% (18/18) | 100% | 36% | 64% | 11.6 s |
+
+qwen3-4b-instruct multi-agent answered the five assignment example questions correctly and with citations in all 3 runs, except P02 (correct in 2 of 3):
 
 * **75% attendance:** students below it may still appear (01_Academic_Regulations p.7).
 * **10 open-elective credits:** in 2 of 3 runs (see §5.5).
@@ -160,9 +183,16 @@ Traces are kept in `eval/dev_iterations/`. The first trial run exposed three pro
 2. **Make-up exam rule misrouted.** P04, a question about the make-up exam *rule*, was sent to the email agent. Fix: route a question to the email agent only when the user explicitly asks for an email.
 3. **Fuzzy matching too loose.** A unit test showed that "Quantum Machine Learning" resolved to "Machine Learning". Fix: stricter title matching.
 
-## 6. 8B models on a 16 GB machine
+## 6. Running with 8B models
 
-*To be completed with the output of `./run_evaluation.sh` (qwen3:8b multi ×3, llama3.1:8b multi ×3, qwen3:8b single ×1) on a 16 GB laptop. Alternatively, run the same 8B models through OpenRouter (README, "Using a hosted API"); hosted versions run at higher precision than Ollama's 4-bit quantisation, so expect slightly better scores. Paste the summary table from `eval/results/RESULTS.md` here.*
+Because of the resource constraints in §4.1, the 8B configurations were not evaluated. The system is not tied to the 4B model: the default model is `qwen3:8b`, and on a 16 GB machine one command reproduces the full study with the assignment's suggested models:
+
+```
+./setup.sh            # dependencies, qwen3:8b + llama3.1:8b + embeddings, index
+./run_evaluation.sh   # qwen3:8b multi x3, llama3.1:8b multi x3, single x1, scoring
+```
+
+We expect 8B models to reduce the two main failure types we saw: skipped tool calls (qwen 4B) and over-refusal or tool calls printed as text (llama 3B). Both are known weaknesses of small models at tool calling.
 
 ## 7. Limitations and future work
 
@@ -171,4 +201,4 @@ Traces are kept in `eval/dev_iterations/`. The first trial run exposed three pro
 * **Tool skipping (P11, S04, single-agent P05):** could be fixed by requiring a tool call on a specialist's first turn (ADK `tool_config` mode `ANY`), or by having the runner call `search_academic_documents` directly before the LLM answers.
 * **Logging:** make logging fully deterministic. Any route to the refusal path writes to the log in code, which is already true through the safety net.
 * **Retrieval:** add a cross-encoder reranker and table-aware PDF parsing. Several facts sit in flattened tables (credit structure, grade points), and adding the year and title as metadata would favour the newest source when documents conflict.
-* **Model choice:** a stronger tool-calling model (8B) should reduce both the over-refusal seen with llama3.2:3b and qwen's skipped tool calls. §6 measures this.
+* **Model choice:** a stronger tool-calling model (8B) should reduce both the over-refusal seen with llama3.2:3b and qwen's skipped tool calls. §6 gives the commands to run this comparison on a 16 GB machine.

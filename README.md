@@ -64,7 +64,7 @@ data/README.md       document manifest and provenance
 eval/questions.json  30 evaluation questions with ground truth and expected sources
 eval/run_eval.py     runs a model/mode N times and stores full traces
 eval/score.py        computes metrics → eval/results/RESULTS.md
-REPORT.md            findings
+REPORT.md / REPORT.pdf evaluation report (PDF built with scripts/md2pdf.py)
 ```
 
 ## Setup (macOS / Linux, 16 GB RAM)
@@ -163,4 +163,4 @@ Or step by step:
 
 Runs are resumable. Each configuration writes full traces (answer, agents visited, every tool call with arguments and responses, latency) to `eval/results/<model>__<mode>/run<k>.jsonl`, plus its own unanswered-question log and email drafts.
 
-Metrics: answer **accuracy** (regex match on required facts), **groundedness** (answer cites an expected source *and* that source was actually returned by a tool), **correct refusal** of out-of-scope questions, whether the agent **logged** them, **false refusals**, **routing** accuracy, latency, and **questions whose outcome changed across runs**. See `REPORT.md` for findings.
+Metrics: answer **accuracy** (regex match on required facts), **groundedness** (answer cites an expected source *and* that source was actually returned by a tool), **correct refusal** of out-of-scope questions, whether the agent **logged** them, **false refusals**, **routing** accuracy, latency, and **questions whose outcome changed across runs**. See `REPORT.pdf` (or `REPORT.md`) for findings.
