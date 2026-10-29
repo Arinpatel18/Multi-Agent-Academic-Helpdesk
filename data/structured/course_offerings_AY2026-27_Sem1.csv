@@ -1,0 +1,39 @@
+course_code,course_title,department,level,credits,ltp,course_type,offered_to,slot,instructor,classroom
+CSL2010,Introduction to Machine Learning,Computer Science and Engineering,200,3,3-0-0,Programme Core,B.Tech CSE/AI&DS 2nd year,B,Dr. Kavya Raman,LHB 104
+CSL2020,Data Structures and Algorithms,Computer Science and Engineering,200,4,3-0-2,Programme Core,B.Tech CSE 2nd year,C,Dr. Arjun Mehta,LHB 105
+CSL3030,Operating Systems,Computer Science and Engineering,300,4,3-0-2,Programme Core,B.Tech CSE 3rd year,D,Dr. Neha Kulkarni,LHB 106
+CSL3050,Computer Networks,Computer Science and Engineering,300,3,3-0-0,Programme Core,B.Tech CSE 3rd year,E,Dr. Rohit Bansal,LHB 107
+CSL4020,Autonomous Systems,Computer Science and Engineering,400,3,3-0-0,Programme Elective (IDRP Robotics),B.Tech 3rd/4th year and PG,J,Dr. Sameer Joshi,LHB 201
+CSL4050,Software Engineering,Computer Science and Engineering,400,3,3-0-0,Programme Elective,B.Tech CSE 4th year,F,Dr. Ishita Verma,LHB 202
+CSL7090,Software and Data Engineering,Computer Science and Engineering,700,3,3-0-0,Programme Elective,M.Tech/PhD and B.Tech 4th year,G,Dr. Arjun Mehta,LHB 203
+CSL7360,Computer Vision,Computer Science and Engineering,700,3,3-0-0,Programme Elective,M.Tech/PhD and B.Tech 4th year,H,Dr. Kavya Raman,LHB 204
+CSL7570,Information Retrieval,Computer Science and Engineering,700,3,3-0-0,Programme Elective,M.Tech/PhD and B.Tech 4th year,I,Dr. Pranav Iyer,LHB 205
+CSL7620,Machine Learning,Computer Science and Engineering,700,3,3-0-0,Programme Core (M.Tech CSE),M.Tech CSE 1st year,A,Dr. Ishita Verma,LHB 206
+CSL7640,Natural Language Understanding,Computer Science and Engineering,700,3,3-0-0,Programme Elective,M.Tech/PhD and B.Tech 4th year,K,Dr. Pranav Iyer,LHB 207
+CSL7780,Augmented and Virtual Reality,Computer Science and Engineering,700,3,3-0-0,Programme Elective,M.Tech/PhD and B.Tech 4th year,L,Dr. Sameer Joshi,LHB 208
+AIL2010,Probability and Statistics for Data Science,School of Artificial Intelligence and Data Science,200,3,3-0-0,Programme Core,B.Tech AI&DS 2nd year,A,Dr. Meera Nair,LHB 301
+AIL3020,Deep Learning,School of Artificial Intelligence and Data Science,300,4,3-0-2,Programme Core,B.Tech AI&DS 3rd year,B,Dr. Vikram Sethi,LHB 302
+AIL4010,Reinforcement Learning,School of Artificial Intelligence and Data Science,400,3,3-0-0,Programme Elective,B.Tech AI&DS/CSE 4th year,C,Dr. Vikram Sethi,LHB 303
+AIL7310,Generative AI,School of Artificial Intelligence and Data Science,700,3,3-0-0,Programme Elective,M.Tech/PhD and B.Tech 4th year,E,Dr. Meera Nair,LHB 304
+EEL2010,Signals and Systems,Electrical Engineering,200,4,3-1-0,Programme Core,B.Tech EE 2nd year,D,Dr. Ankit Saxena,LHB 401
+EEL3020,Control Systems,Electrical Engineering,300,4,3-0-2,Programme Core,B.Tech EE 3rd year,F,Dr. Ritu Agarwal,LHB 402
+EEL4110,Power Electronics,Electrical Engineering,400,3,3-0-0,Programme Elective,B.Tech EE 4th year,G,Dr. Ankit Saxena,LHB 403
+EEL7330,Flexible and Printed Electronics,Electrical Engineering,700,3,3-0-0,Programme Elective,M.Tech/PhD and B.Tech 4th year,H,Dr. Ritu Agarwal,LHB 404
+MEL2010,Thermodynamics,Mechanical Engineering,200,3,3-0-0,Programme Core,B.Tech ME 2nd year,A,Dr. Harish Chandra,LHC 101
+MEL3040,Robotics and Automation,Mechanical Engineering,300,3,3-0-0,Programme Core,B.Tech ME 3rd year,I,Dr. Sunita Rao,LHC 102
+MEL4050,Additive Manufacturing,Mechanical Engineering,400,3,3-0-0,Programme Elective,B.Tech ME 4th year,K,Dr. Harish Chandra,LHC 103
+MAL2010,Linear Algebra and Complex Analysis,Mathematics,200,3,3-0-0,Institute Core,B.Tech 2nd year (all branches),N,Dr. Gaurav Pandey,LHC 201
+MAL4020,Numerical Methods,Mathematics,400,3,3-0-0,Open Elective,B.Tech 3rd/4th year (all branches),J,Dr. Gaurav Pandey,LHC 202
+PHL4030,Quantum Computing,Physics,400,3,3-0-0,Open Elective,B.Tech 3rd/4th year (all branches),L,Dr. Farah Siddiqui,LHC 203
+BBL4010,Introduction to Bioinformatics,Bioscience and Bioengineering,400,3,3-0-0,Open Elective,B.Tech 3rd/4th year (all branches),H,Dr. Deepa Menon,LHC 204
+HSL3010,Principles of Psychology,Humanities and Social Sciences,300,3,3-0-0,HSS Elective,B.Tech 2nd/3rd year,M,Dr. Aditi Chatterjee,LHC 301
+HSL3060,Development and Environment,Humanities and Social Sciences,300,3,3-0-0,HSS Elective,B.Tech 2nd/3rd year,M,Dr. Kunal Bhattacharya,LHC 302
+HSL3070,Indian Society: A Sociological Introduction,Humanities and Social Sciences,300,3,3-0-0,HSS Elective,B.Tech 2nd/3rd year,N,Dr. Nandini Rao,LHC 303
+HSL4010,Fundamentals of Logic,Humanities and Social Sciences,400,3,3-0-0,HSS Elective,B.Tech 3rd/4th year,J,Dr. Rahul Deshpande,LHC 304
+HSL4030,Disaster Risk Reduction and Management,Humanities and Social Sciences,400,3,3-0-0,HSS Elective,B.Tech 3rd/4th year,K,Dr. Kunal Bhattacharya,LHC 305
+HSL4060,Positive Psychology and Well-being,Humanities and Social Sciences,400,3,3-0-0,HSS Elective,B.Tech 3rd/4th year,L,Dr. Aditi Chatterjee,LHC 306
+HSL4070,Health Economics,Humanities and Social Sciences,400,3,3-0-0,HSS Elective,B.Tech 3rd/4th year,J,Dr. Sneha Gupta,LHC 307
+HSL4080,Bioethics,Humanities and Social Sciences,400,3,3-0-0,HSS Elective,B.Tech 3rd/4th year,K,Dr. Rahul Deshpande,LHC 308
+HSN3010,Professional Ethics I,Humanities and Social Sciences,300,1,1-0-0,Institute Core (Non-graded),B.Tech 3rd year,N,Dr. Nandini Rao,LHB 110
+HSL7410,History and Philosophy of Science,Humanities and Social Sciences,700,3,3-0-0,HSS Elective,PG/PhD and B.Tech 4th year,M,Dr. Rahul Deshpande,LHC 309
+HSL7460,Political and Institutional Economics of Development,Humanities and Social Sciences,700,3,3-0-0,HSS Elective,PG/PhD and B.Tech 4th year,I,Dr. Sneha Gupta,LHC 310

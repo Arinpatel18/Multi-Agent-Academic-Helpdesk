@@ -1,0 +1,18 @@
+slot,days,start_time,end_time,hours_per_week,notes
+A,Mon/Wed/Thu,08:00,08:50,3,Lecture slot
+B,Mon/Wed/Thu,09:00,09:50,3,Lecture slot
+C,Mon/Wed/Thu,10:00,10:50,3,Lecture slot
+D,Mon/Wed/Thu,11:00,11:50,3,Lecture slot
+E,Tue/Fri,08:00,09:20,2.67,Lecture slot (80-minute classes)
+F,Tue/Fri,09:30,10:50,2.67,Lecture slot (80-minute classes)
+G,Tue/Fri,11:00,12:20,2.67,Lecture slot (80-minute classes)
+H,Mon/Wed,14:00,15:20,2.67,Lecture slot (80-minute classes)
+I,Mon/Wed,15:30,16:50,2.67,Lecture slot (80-minute classes)
+J,Tue/Fri,14:00,15:20,2.67,Lecture slot (80-minute classes)
+K,Tue/Fri,15:30,16:50,2.67,Lecture slot (80-minute classes)
+L,Thu,14:00,16:50,3,Lecture slot (single 3-hour block)
+M,Mon/Wed,17:00,18:20,2.67,Evening slot (HSS electives)
+N,Tue/Thu/Fri,12:30,13:20,3,Lecture slot
+P1,Mon,14:00,16:50,3,Laboratory slot
+P2,Tue,14:00,16:50,3,Laboratory slot
+P3,Thu,09:00,11:50,3,Laboratory slot
