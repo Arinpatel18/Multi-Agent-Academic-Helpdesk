@@ -84,6 +84,7 @@ def main():
             "schedule acc": pct([s["correct"] for s in ins if s["category"] == "schedule"]),
             "email acc": pct([s["correct"] for s in ins if s["category"] == "email"]),
             "groundedness": pct([s["grounded"] for s in ins]),
+            "correct & grounded": pct([s["correct"] and s["grounded"] for s in ins]),
             "correct refusal (OOS)": pct([s["correct"] for s in oos]),
             "OOS logged by agent": pct([s["logged_by_agent"] for s in oos]),
             "false refusal (in-scope)": pct([s["false_refusal"] for s in ins]),
