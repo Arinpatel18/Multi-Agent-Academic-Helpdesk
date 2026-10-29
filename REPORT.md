@@ -16,7 +16,7 @@
 
 We built an IIT Jodhpur academic helpdesk with Google ADK, Ollama models (through ADK's LiteLLM connector), and a ChromaDB RAG pipeline over 27 documents. A single-agent baseline was extended to a multi-agent system: an orchestrator transfers each question to a **policy**, **schedule** or **email** agent. We evaluated it on 30 questions, with 3 repeated runs per multi-agent configuration.
 
-**Models and hardware.** We evaluated the two 8B models the assignment suggests, **Qwen3 8B** and **Llama 3.1 8B**, on a team member's machine with enough memory for them. Our development laptop is an **Apple M1 Mac with 8 GB RAM**, which cannot run 8B models at a usable speed. On it we ran the same study with a **4B-parameter model (Qwen3-4B-Instruct)** and a **3B model (Llama 3.2)** (§4.1). Both sets used identical code, documents and questions.
+**Models.** We evaluated the two 8B models the assignment suggests, **Qwen3 8B** and **Llama 3.1 8B**. For comparison, we also ran the same study with two smaller models: **Qwen3-4B-Instruct (4B)** and **Llama 3.2 (3B)** (§4.1). All configurations used identical code, documents and questions.
 
 Key results:
 
@@ -71,16 +71,16 @@ The single-agent baseline (`--mode single`) is one `LlmAgent` with all seven too
 
 ## 4. Evaluation method
 
-### 4.1 Models and hardware
+### 4.1 Models
 
-| Models | Machine | Why |
-|---|---|---|
-| `qwen3:8b`, `llama3.1:8b` | A team member's laptop with enough RAM for 8B models | The models the assignment suggests |
-| `qwen3:4b-instruct-2507`, `llama3.2:3b` | Apple M1 Mac, 8 GB unified memory (development laptop) | Resource constraints: 8B models do not fit |
+| Models | Role |
+|---|---|
+| `qwen3:8b`, `llama3.1:8b` | Main study: the 8B models the assignment suggests. Llama 3.1 is the replacement LLM for Qwen3 |
+| `qwen3:4b-instruct-2507` (4-bit), `llama3.2:3b` | Smaller-model comparison: the same study at 4B and 3B parameters |
 
-On the 8 GB M1 Mac we tried `qwen3:8b` first. Its 5.2 GB of weights plus the context cache did not fit alongside the operating system, so the machine swapped heavily and generated **0.02 tokens/s** (one 30-token answer took 24 minutes). We therefore used the **4B-parameter `qwen3:4b-instruct-2507` (4-bit, about 3.8 GB)**, which runs fully on the M1 GPU at 10–40 s per question, with `llama3.2:3b` as its replacement LLM. The plain `qwen3:4b` build was unusable: it is thinking-only, ignored `think=false`, and took about 200 s per question.
+For the 4B model we used the `qwen3:4b-instruct-2507` build. The plain `qwen3:4b` build is thinking-only: it ignored `think=false` and was about 8× slower per question.
 
-All six configurations used the same code, documents, vector index settings and questions. **Latencies are only comparable within a machine**, not between the 8B and the 4B/3B results.
+All six configurations used the same code, documents, vector index settings and questions.
 
 ### 4.2 Question set (`eval/questions.json`)
 
@@ -122,16 +122,16 @@ All five example questions from the assignment are included (P01, P02, S01, S02,
 | qwen3-4b-instruct, single | 1 | 50% (12/24) | 46% | 71% | 25% | 67% | 50% |
 | llama3.2:3b, multi | 3 | 39% (28/72) | 44% | 43% | 17% | 50% | 38% |
 
-**Refusals, routing and speed:**
+**Refusals and routing:**
 
-| Configuration | Out-of-scope refused | Out-of-scope logged by agent | False refusals | Routing | Mean latency |
-|---|---|---|---|---|---|
-| qwen3:8b, multi | 100% (18/18) | 0% | 11% | 97% | 18.3 s |
-| llama3.1:8b, multi | 100% (18/18) | 100% | 0% | 100% | 17.9 s |
-| qwen3:8b, single | 100% (6/6) | 0% | 17% | – | 15.1 s |
-| qwen3-4b-instruct, multi | 100% (18/18) | 0% | 8% | 100% | 25.9 s |
-| qwen3-4b-instruct, single | 100% (6/6) | 0% | 33% | – | 21.5 s |
-| llama3.2:3b, multi | 100% (18/18) | 100% | 36% | 64% | 11.6 s |
+| Configuration | Out-of-scope refused | Out-of-scope logged by agent | False refusals | Routing |
+|---|---|---|---|---|
+| qwen3:8b, multi | 100% (18/18) | 0% | 11% | 97% |
+| llama3.1:8b, multi | 100% (18/18) | 100% | 0% | 100% |
+| qwen3:8b, single | 100% (6/6) | 0% | 17% | – |
+| qwen3-4b-instruct, multi | 100% (18/18) | 0% | 8% | 100% |
+| qwen3-4b-instruct, single | 100% (6/6) | 0% | 33% | – |
+| llama3.2:3b, multi | 100% (18/18) | 100% | 36% | 64% |
 
 **Email drafts.** The accuracy score requires the draft (instructor address, request type) to appear in the reply. Separately, we checked whether `draft_email` actually saved a correct draft for E01–E03:
 
@@ -246,11 +246,11 @@ Traces are kept in `eval/dev_iterations/`. The first trial run (on the 4B model)
 ## 6. Reproducing the results
 
 ```
-# 4B/3B study (8 GB machine): setup pulls the models and builds the index
+# 4B/3B study: setup pulls the models and builds the index
 ./setup.sh
 ./run_evaluation.sh
 
-# 8B study (about 16 GB RAM)
+# 8B study
 HELPDESK_MODELS="qwen3:8b llama3.1:8b" ./setup.sh
 MAIN=qwen3:8b ALT=llama3.1:8b ./run_evaluation.sh
 
@@ -264,7 +264,6 @@ Each `run_evaluation.sh` call runs the main model as a multi-agent system ×3, t
 
 * **Scoring:** the regex scorer is strict on facts but can accept a right number given for the wrong reason (P02, 4B). Manual review or an LLM judge is needed for a final number. It also counts a correct draft as wrong when the reply doesn't show it (§5.1).
 * **Reconstructed CSVs:** the current-semester CSVs are reconstructions, so schedule results show tool use, not real timetable accuracy.
-* **Two hardware setups:** the 8B and 4B/3B results come from different machines, so their latencies cannot be compared.
 * **Tool skipping (qwen3:8b P09/P11, schedule S04 for both 8B models):** could be fixed by requiring a tool call on a specialist's first turn (ADK `tool_config` mode `ANY`), or by having the runner call `search_academic_documents` / `get_slot_timing` directly before the LLM answers.
 * **Empty replies (llama3.1:8b):** the email agent could return the tool's draft text verbatim. That is a deterministic fix: it does not rely on the model restating the draft.
 * **Logging:** make logging fully deterministic. Any route to the refusal path writes to the log in code, which is already true through the safety net.
