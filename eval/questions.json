@@ -6,7 +6,7 @@
   {"id": "P02", "category": "policy", "question": "How many Open Elective credits do I need to earn in order to get a B.Tech. Degree?",
    "expected_answer": "10 credits of Open Electives (OE) for a regular B.Tech. (0 for B.Tech. with specialization / dual degree) - Table 11.2.",
    "must_match": [["\\b10\\b|\\bten\\b"]],
-   "expected_sources": ["01_Academic_Regulations"], "expected_agents": ["policy_agent"]},
+   "expected_sources": ["01_Academic_Regulations", "32_Specialization"], "expected_agents": ["policy_agent"]},
   {"id": "P03", "category": "policy", "question": "What is the maximum duration allowed to complete a B.Tech. programme?",
    "expected_answer": "14 registered semesters.",
    "must_match": [["\\b14\\b|fourteen"], ["semester"]],
