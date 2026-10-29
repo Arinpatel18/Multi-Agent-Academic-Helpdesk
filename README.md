@@ -119,6 +119,23 @@ Source: course_offerings_AY2026-27_Sem1.csv; faculty_directory.csv
 
 Unanswered questions are in `logs/unanswered_questions.jsonl` (one JSON object per line: timestamp, question, reason, status).
 
+### Using a hosted API instead of a local model
+
+If no 16 GB machine is available, the **same 8B models** can be called through a hosted API.
+Embeddings and ChromaDB stay local. Any model name with a provider prefix is passed straight to LiteLLM:
+
+```bash
+export OPENROUTER_API_KEY=...        # https://openrouter.ai/keys
+.venv/bin/python eval/run_eval.py --model openrouter/qwen/qwen3-8b --mode multi --runs 3
+.venv/bin/python eval/run_eval.py --model openrouter/meta-llama/llama-3.1-8b-instruct --mode multi --runs 3
+
+export GROQ_API_KEY=...              # https://console.groq.com/keys
+.venv/bin/python -m helpdesk.cli --model groq/llama-3.1-8b-instant --trace
+```
+
+Ollama Cloud works through the local Ollama app (`ollama signin`, then e.g. `--model gpt-oss:20b-cloud`), but it does
+not host Qwen3 8B or Llama 3.1 8B. Its smallest models (20B+) are larger than the assignment's 8B target.
+
 ### Configuration (environment variables)
 
 | Variable | Default | Meaning |

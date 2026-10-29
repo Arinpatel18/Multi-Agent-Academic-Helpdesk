@@ -84,6 +84,10 @@ Tool guide:
 
 def make_model(model_name=None):
     name = model_name or config.CHAT_MODEL
+    if "/" in name:
+        # Hosted provider via LiteLLM, e.g. "openrouter/qwen/qwen3-8b" or "groq/llama-3.1-8b-instant".
+        # The API key is read from the provider's env var (OPENROUTER_API_KEY, GROQ_API_KEY, ...).
+        return LiteLlm(model=name)
     extra = {}
     if name.startswith("qwen3") and not config.THINKING:
         extra["reasoning_effort"] = "none"  # LiteLLM maps this to Ollama think=false (much faster)
