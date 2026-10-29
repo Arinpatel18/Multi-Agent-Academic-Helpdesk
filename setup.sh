@@ -11,7 +11,7 @@ echo "Using $PY ($($PY --version))"
 
 command -v ollama >/dev/null || { echo "Install Ollama first: https://ollama.com/download"; exit 1; }
 curl -s http://localhost:11434/api/tags >/dev/null || { echo "Start Ollama first (open the app or run: ollama serve)"; exit 1; }
-for m in nomic-embed-text ${HELPDESK_MODELS:-qwen3:8b llama3.1:8b}; do
+for m in nomic-embed-text ${HELPDESK_MODELS:-qwen3:4b-instruct-2507-q4_K_M llama3.2:3b}; do
   echo "Pulling $m"; ollama pull "$m"
 done
 

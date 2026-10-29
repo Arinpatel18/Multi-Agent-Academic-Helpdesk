@@ -71,7 +71,7 @@ The single-agent baseline (`--mode single`) is one `LlmAgent` with all seven too
 
 The assignment targets 8B models on a 16 GB machine. Due to resource constraints, all experiments were run on an **Apple M1 Mac with 8 GB of unified memory**. We tried `qwen3:8b` first: its 5.2 GB of weights plus the context cache did not fit alongside the operating system, so the machine swapped heavily and generated **0.02 tokens/s** (one 30-token answer took 24 minutes).
 
-We therefore used the **4B-parameter `qwen3:4b-instruct-2507` (4-bit, about 3.8 GB)** as the main model. It runs fully on the M1 GPU at 10–40 s per question. The model-replacement comparison uses `llama3.2:3b`. The code defaults to `qwen3:8b`, and `./run_evaluation.sh` reproduces the full study with `qwen3:8b` and `llama3.1:8b` on a 16 GB machine (§6).
+We therefore used the **4B-parameter `qwen3:4b-instruct-2507` (4-bit, about 3.8 GB)** as the main model. It runs fully on the M1 GPU at 10–40 s per question. The model-replacement comparison uses `llama3.2:3b`. The repository defaults to these models, so `./setup.sh` followed by `./run_evaluation.sh` reproduces every result in this report (§6).
 
 We also had to choose the qwen3 build carefully. Plain `qwen3:4b` is a thinking-only build: it ignored `think=false` and took about 200 s per question. `qwen3:4b-instruct-2507` needs about 20–30 s.
 
@@ -183,16 +183,16 @@ Traces are kept in `eval/dev_iterations/`. The first trial run exposed three pro
 2. **Make-up exam rule misrouted.** P04, a question about the make-up exam *rule*, was sent to the email agent. Fix: route a question to the email agent only when the user explicitly asks for an email.
 3. **Fuzzy matching too loose.** A unit test showed that "Quantum Machine Learning" resolved to "Machine Learning". Fix: stricter title matching.
 
-## 6. Running with 8B models
+## 6. Reproducing the results, and 8B models
 
-Because of the resource constraints in §4.1, the 8B configurations were not evaluated. The system is not tied to the 4B model: the default model is `qwen3:8b`, and on a 16 GB machine one command reproduces the full study with the assignment's suggested models:
+Every result above was produced locally on the 8 GB M1 Mac. The repository defaults to the same models, so two commands reproduce the full study:
 
 ```
-./setup.sh            # dependencies, qwen3:8b + llama3.1:8b + embeddings, index
-./run_evaluation.sh   # qwen3:8b multi x3, llama3.1:8b multi x3, single x1, scoring
+./setup.sh            # dependencies, qwen3:4b-instruct + llama3.2:3b + embeddings, index
+./run_evaluation.sh   # 4B multi x3, 3B multi x3, 4B single x1, scoring
 ```
 
-We expect 8B models to reduce the two main failure types we saw: skipped tool calls (qwen 4B) and over-refusal or tool calls printed as text (llama 3B). Both are known weaknesses of small models at tool calling.
+Because of the resource constraints in §4.1, 8B models were not evaluated. The system is not tied to the 4B model: on a 16 GB machine the same study runs with the assignment's suggested models via `MAIN=qwen3:8b ALT=llama3.1:8b ./run_evaluation.sh`. We expect 8B models to reduce the two main failure types we saw: skipped tool calls (qwen 4B) and over-refusal or tool calls printed as text (llama 3B). Both are known weaknesses of small models at tool calling.
 
 ## 7. Limitations and future work
 

@@ -7,13 +7,13 @@ A local, multi-agent academic helpdesk built with **Google ADK** and **Ollama** 
 * draft emails to course instructors (leave, sick leave, make-up exam). Drafts are saved for review, **never sent**;
 * **refuse** out-of-scope questions (dining, travel, …) instead of guessing, and **log every unanswered question** for a human to follow up.
 
-Everything runs offline on a 16 GB laptop.
+Everything runs offline on a laptop. All reported results were produced locally on an Apple M1 Mac (8 GB RAM).
 
 **Team:** Balijapalli Arin Patel (B23CM1009), Bure Siddardha (B23CM1011), Aarav Dawer Bhojwani (B23CM1002), Kanishk Singh Dayma (B23CS1024)
 
 **Deliverables:** code (`helpdesk/`, `helpdesk_agent/`), this README, the question set (`eval/questions.json`, 30 questions), the report (`REPORT.pdf`), and raw evaluation results (`eval/results/`).
 
-> Due to resource constraints (an Apple M1 Mac with 8 GB RAM), the reported evaluation uses the 4B-parameter `qwen3:4b-instruct-2507` model, with `llama3.2:3b` as the replacement LLM. The code defaults to `qwen3:8b` for 16 GB machines.
+> Due to resource constraints (an Apple M1 Mac with 8 GB RAM), the reported evaluation uses the 4B-parameter `qwen3:4b-instruct-2507` model, with `llama3.2:3b` as the replacement LLM. The code defaults to this 4B model, so `./setup.sh` and `./run_evaluation.sh` reproduce the reported results.
 
 ## Architecture
 
@@ -40,7 +40,7 @@ Everything runs offline on a 16 GB laptop.
 | Component | Implementation |
 |---|---|
 | Agent framework | Google ADK 2.13 (`LlmAgent`, `sub_agents` + `transfer_to_agent`, `Runner`) |
-| LLM | Ollama via `LiteLlm("ollama_chat/<model>")`. Default `qwen3:8b` (alt. `llama3.1:8b`) for 16 GB; `qwen3:4b-instruct-2507-q4_K_M` / `llama3.2:3b` for 8 GB |
+| LLM | Ollama via `LiteLlm("ollama_chat/<model>")`. `qwen3:4b-instruct-2507-q4_K_M` (main model), `llama3.2:3b` (replacement LLM) |
 | Embeddings | `nomic-embed-text` via Ollama (with `search_document:` / `search_query:` prefixes) |
 | Vector store | ChromaDB (persistent, cosine), page-aware chunks of ~1,200 chars with 200 overlap |
 | Retrieval | Hybrid: dense top-20 + BM25 top-20, fused with Reciprocal Rank Fusion → top 6 |
@@ -73,10 +73,12 @@ eval/score.py        computes metrics → eval/results/RESULTS.md
 REPORT.md / REPORT.pdf evaluation report (PDF built with scripts/md2pdf.py)
 ```
 
-## Setup (macOS / Linux, 16 GB RAM)
+## Setup (macOS / Linux)
+
+Tested on an Apple M1 Mac with 8 GB RAM.
 
 1. Install [Ollama](https://ollama.com/download) and start it (open the app, or `ollama serve`).
-2. Run the setup script. It creates `.venv` (Python 3.11 or 3.12), installs requirements, pulls `nomic-embed-text`, `qwen3:8b` and `llama3.1:8b`, and builds the vector store:
+2. Run the setup script. It creates `.venv` (Python 3.11 or 3.12), installs requirements, pulls `nomic-embed-text`, `qwen3:4b-instruct-2507-q4_K_M` and `llama3.2:3b`, and builds the vector store:
 
 ```bash
 chmod +x setup.sh run_evaluation.sh
@@ -88,13 +90,11 @@ chmod +x setup.sh run_evaluation.sh
 ```powershell
 py -3.12 -m venv .venv
 .venv\Scripts\pip install -r requirements.txt
-ollama pull nomic-embed-text; ollama pull qwen3:8b; ollama pull llama3.1:8b
+ollama pull nomic-embed-text; ollama pull qwen3:4b-instruct-2507-q4_K_M; ollama pull llama3.2:3b
 .venv\Scripts\python -m helpdesk.ingest --reset
 ```
 
-On an **8 GB** machine 8B models swap heavily and become unusably slow. Use small models instead:
-`HELPDESK_MODELS="qwen3:4b-instruct-2507-q4_K_M llama3.2:3b" ./setup.sh` and
-`export HELPDESK_MODEL=qwen3:4b-instruct-2507-q4_K_M`. (Avoid plain `qwen3:4b`: it is a thinking-only build and ~8x slower.)
+Use the `qwen3:4b-instruct-2507` build, not plain `qwen3:4b`: the plain build always "thinks" and is about 8x slower.
 
 ## Usage
 
@@ -106,7 +106,7 @@ On an **8 GB** machine 8B models swap heavily and become unusably slow. Use smal
 .venv/bin/python -m helpdesk.cli -q "What is the slot for the course Autonomous Systems?" --trace
 
 # single-agent baseline / another model
-.venv/bin/python -m helpdesk.cli --mode single --model llama3.1:8b
+.venv/bin/python -m helpdesk.cli --mode single --model llama3.2:3b
 
 # ADK developer web UI (from the repo root)
 .venv/bin/adk web
@@ -125,28 +125,11 @@ Source: course_offerings_AY2026-27_Sem1.csv; faculty_directory.csv
 
 Unanswered questions are in `logs/unanswered_questions.jsonl` (one JSON object per line: timestamp, question, reason, status).
 
-### Using a hosted API instead of a local model
-
-If no 16 GB machine is available, the **same 8B models** can be called through a hosted API.
-Embeddings and ChromaDB stay local. Any model name with a provider prefix is passed straight to LiteLLM:
-
-```bash
-export OPENROUTER_API_KEY=...        # https://openrouter.ai/keys
-.venv/bin/python eval/run_eval.py --model openrouter/qwen/qwen3-8b --mode multi --runs 3
-.venv/bin/python eval/run_eval.py --model openrouter/meta-llama/llama-3.1-8b-instruct --mode multi --runs 3
-
-export GROQ_API_KEY=...              # https://console.groq.com/keys
-.venv/bin/python -m helpdesk.cli --model groq/llama-3.1-8b-instant --trace
-```
-
-Ollama Cloud works through the local Ollama app (`ollama signin`, then e.g. `--model gpt-oss:20b-cloud`), but it does
-not host Qwen3 8B or Llama 3.1 8B. Its smallest models (20B+) are larger than the assignment's 8B target.
-
 ### Configuration (environment variables)
 
 | Variable | Default | Meaning |
 |---|---|---|
-| `HELPDESK_MODEL` | `qwen3:8b` | Ollama chat model |
+| `HELPDESK_MODEL` | `qwen3:4b-instruct-2507-q4_K_M` | Ollama chat model (an 8B model such as `qwen3:8b` also works on a 16 GB machine) |
 | `HELPDESK_EMBED_MODEL` | `nomic-embed-text` | Ollama embedding model |
 | `HELPDESK_TEMPERATURE` | `0.2` | Sampling temperature |
 | `HELPDESK_NUM_CTX` | `8192` | Context window passed to Ollama |
@@ -156,15 +139,16 @@ not host Qwen3 8B or Llama 3.1 8B. Its smallest models (20B+) are larger than th
 ## Evaluation
 
 ```bash
-./run_evaluation.sh          # qwen3:8b multi x3, llama3.1:8b multi x3, qwen3:8b single x1, then scoring
-# 8 GB RAM:  MAIN=qwen3:4b-instruct-2507-q4_K_M ALT=llama3.2:3b ./run_evaluation.sh
+./run_evaluation.sh   # qwen3:4b-instruct multi x3, llama3.2:3b multi x3, qwen3:4b-instruct single x1, then scoring
 ```
 
 Or step by step:
 
 ```bash
-.venv/bin/python eval/run_eval.py --model qwen3:8b --mode multi --runs 3
-.venv/bin/python eval/score.py           # → eval/results/RESULTS.md, per_question.csv, summary.json
+.venv/bin/python eval/run_eval.py --model qwen3:4b-instruct-2507-q4_K_M --mode multi --runs 3
+.venv/bin/python eval/run_eval.py --model llama3.2:3b --mode multi --runs 3
+.venv/bin/python eval/run_eval.py --model qwen3:4b-instruct-2507-q4_K_M --mode single --runs 1
+.venv/bin/python eval/score.py           # -> eval/results/RESULTS.md, per_question.csv, summary.json
 ```
 
 Runs are resumable. Each configuration writes full traces (answer, agents visited, every tool call with arguments and responses, latency) to `eval/results/<model>__<mode>/run<k>.jsonl`, plus its own unanswered-question log and email drafts.

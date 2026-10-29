@@ -35,14 +35,8 @@ class Helpdesk:
         msg = types.Content(role="user", parts=[types.Part(text=question)])
         t0 = time.time()
         agents, tool_calls, texts, error = [], [], [], None
-        tokens = {"prompt": 0, "completion": 0, "llm_calls": 0}
         try:
             async for ev in self.runner.run_async(user_id=user_id, session_id=session_id, new_message=msg):
-                um = getattr(ev, "usage_metadata", None)
-                if um and (um.prompt_token_count or um.candidates_token_count):
-                    tokens["prompt"] += um.prompt_token_count or 0
-                    tokens["completion"] += um.candidates_token_count or 0
-                    tokens["llm_calls"] += 1
                 if ev.author and ev.author != "user" and (not agents or agents[-1] != ev.author):
                     agents.append(ev.author)
                 for part in (ev.content.parts if ev.content and ev.content.parts else []):
@@ -71,7 +65,7 @@ class Helpdesk:
         return {
             "question": question, "answer": answer, "mode": self.mode, "agents": agents,
             "answered_by": final_author, "tool_calls": tool_calls, "refused": refused,
-            "logged_by_agent": logged, "auto_logged": auto_logged, "error": error, "tokens": tokens,
+            "logged_by_agent": logged, "auto_logged": auto_logged, "error": error,
             "latency_s": round(time.time() - t0, 1), "timestamp": datetime.now().isoformat(timespec="seconds"),
         }
 
