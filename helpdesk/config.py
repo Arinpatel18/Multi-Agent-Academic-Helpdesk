@@ -2,7 +2,10 @@
 import os
 from pathlib import Path
 
+from dotenv import load_dotenv
+
 ROOT = Path(__file__).resolve().parent.parent
+load_dotenv(ROOT / ".env")  # API keys / model choice; variables already set in the shell take precedence
 
 DOCS_DIR = ROOT / "data" / "documents"
 STRUCTURED_DIR = ROOT / "data" / "structured"
