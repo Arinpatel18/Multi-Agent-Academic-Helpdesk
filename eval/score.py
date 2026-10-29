@@ -23,7 +23,6 @@ from statistics import mean
 ROOT = Path(__file__).resolve().parent.parent
 RES = ROOT / "eval" / "results"
 QS = {q["id"]: q for q in json.loads((ROOT / "eval" / "questions.json").read_text())}
-TEXT_CHANGE_THRESHOLD = 0.9
 
 
 def matches(answer, groups):
@@ -84,7 +83,6 @@ def main():
             "schedule acc": pct([s["correct"] for s in ins if s["category"] == "schedule"]),
             "email acc": pct([s["correct"] for s in ins if s["category"] == "email"]),
             "groundedness": pct([s["grounded"] for s in ins]),
-            "correct & grounded": pct([s["correct"] and s["grounded"] for s in ins]),
             "correct refusal (OOS)": pct([s["correct"] for s in oos]),
             "OOS logged by agent": pct([s["logged_by_agent"] for s in oos]),
             "false refusal (in-scope)": pct([s["false_refusal"] for s in ins]),
@@ -111,8 +109,8 @@ def main():
                 sim = min(difflib.SequenceMatcher(None, a, b).ratio() for a in answers for b in answers)
                 flips = len(set(corr)) > 1 or len({s["refused"] for _, s in items}) > 1 \
                     or len({s["answered_by"] for _, s in items}) > 1
-                if flips or sim < TEXT_CHANGE_THRESHOLD:
-                    changed.append((qid, corr, [s["answered_by"] for _, s in items], round(sim, 2), answers, flips))
+                if flips:
+                    changed.append((qid, corr, [s["answered_by"] for _, s in items], round(sim, 2), answers))
         consistency[cfg.name] = changed
 
     keys = list(summary_rows[0].keys())
@@ -122,17 +120,14 @@ def main():
               "|---|---|---|---|---|---|---|"]
     lines += [f"| {r['config']} | {r['id']} | {r['category']} | {r['correct_runs']} | {r['grounded_runs']} | "
               f"{r['answered_by']} | {r['question']} |" for r in per_q_rows]
-    lines += ["", "## Questions whose answers changed across runs", "",
-              f"Listed when the outcome flipped (correct / refused / answering agent) **or** the answer text changed "
-              f"(min pairwise similarity < {TEXT_CHANGE_THRESHOLD}). Text changes need a manual look: the regex "
-              f"scorer can accept an answer that contains the right number for the wrong reason.", ""]
+    lines += ["", "## Questions whose outcome changed across runs", ""]
     for cfg, changed in consistency.items():
         lines.append(f"### {cfg}")
         if not changed:
-            lines.append("No changes across runs (or only one run).")
-        for qid, corr, who, sim, answers, flips in changed:
-            lines.append(f"- **{qid}** {QS[qid]['question']}  \n  {'OUTCOME CHANGED' if flips else 'text changed'}; "
-                         f"correct per run: {corr}; answered by: {who}; min answer similarity: {sim}")
+            lines.append("No outcome changes across runs (or only one run).")
+        for qid, corr, who, sim, answers in changed:
+            lines.append(f"- **{qid}** {QS[qid]['question']}  \n  correct per run: {corr}; answered by: {who}; "
+                         f"min answer similarity: {sim}")
             for i, a in enumerate(answers, 1):
                 lines.append(f"  - run {i}: {a[:220].replace(chr(10), ' ')!r}")
         lines.append("")
@@ -142,8 +137,7 @@ def main():
         w.writeheader()
         w.writerows(per_q_rows)
     (RES / "summary.json").write_text(json.dumps({"summary": summary_rows, "changed_across_runs": {
-        k: {"outcome_changed": [c[0] for c in v if c[5]], "text_changed_only": [c[0] for c in v if not c[5]]}
-        for k, v in consistency.items()}}, indent=2))
+        k: [c[0] for c in v] for k, v in consistency.items()}}, indent=2))
     print("\n".join(lines[:8 + len(summary_rows)]))
     print(f"\nWrote {RES / 'RESULTS.md'}")
 

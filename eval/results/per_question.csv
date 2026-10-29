@@ -1,91 +1,91 @@
 config,id,category,correct_runs,grounded_runs,answered_by,question
-llama3.2-3b__multi,E01,email,0/3,0/3,helpdesk_orchestrator,Write an email to the course instructor of CSL7570 that I need leave for 2 days
-llama3.2-3b__multi,E02,email,0/3,0/3,helpdesk_orchestrator,I had fever and missed the minor exam of Deep Learning. Draft an email to the instructor asking for a make-up exam.
-llama3.2-3b__multi,E03,email,0/3,0/3,helpdesk_orchestrator,"Draft a sick leave email to the instructor of Operating Systems for 3 days starting 4 November 2026. My name is Rahul Verma, roll number B23CS1042."
-llama3.2-3b__multi,E04,email,2/3,2/3,email_agent;helpdesk_orchestrator,What is the email ID of the instructor teaching Bioethics?
-llama3.2-3b__multi,O01,out_of_scope,3/3,-,helpdesk_orchestrator,What are the available dining options on the campus?
-llama3.2-3b__multi,O02,out_of_scope,3/3,-,helpdesk_orchestrator,What is the best way to reach the campus from Jodhpur city center?
-llama3.2-3b__multi,O03,out_of_scope,3/3,-,helpdesk_orchestrator,Who won the last IPL cricket tournament?
-llama3.2-3b__multi,O04,out_of_scope,3/3,-,helpdesk_orchestrator,What is the Wi-Fi password for the central library?
-llama3.2-3b__multi,O05,out_of_scope,3/3,-,helpdesk_orchestrator,What was the JEE Advanced closing rank for B.Tech. CSE admission at IIT Jodhpur in 2026?
-llama3.2-3b__multi,O06,out_of_scope,3/3,-,helpdesk_orchestrator,How much is the hostel mess fee per month?
-llama3.2-3b__multi,P01,policy,3/3,3/3,policy_agent,What is the attendance requirement to sit in the Major exam?
-llama3.2-3b__multi,P02,policy,0/3,0/3,helpdesk_orchestrator,How many Open Elective credits do I need to earn in order to get a B.Tech. Degree?
-llama3.2-3b__multi,P03,policy,1/3,1/3,helpdesk_orchestrator;policy_agent,What is the maximum duration allowed to complete a B.Tech. programme?
-llama3.2-3b__multi,P04,policy,0/3,0/3,helpdesk_orchestrator,"I missed my major exam because I was hospitalised. Within how many days must I apply for a make-up examination, and to whom?"
-llama3.2-3b__multi,P05,policy,0/3,0/3,helpdesk_orchestrator,How many grade points does a B- grade carry?
-llama3.2-3b__multi,P06,policy,3/3,3/3,policy_agent,What are the eligibility criteria for a B.Tech. student to opt for a Minor?
-llama3.2-3b__multi,P07,policy,3/3,3/3,policy_agent,How many credits must be completed to earn a Minor or an Interdisciplinary Specialization?
-llama3.2-3b__multi,P08,policy,0/3,0/3,helpdesk_orchestrator,When is the Minor Examination for the first semester of AY 2026-27?
-llama3.2-3b__multi,P09,policy,0/3,0/3,helpdesk_orchestrator,When is the Major Examination of the Summer Term 2026?
-llama3.2-3b__multi,P10,policy,3/3,3/3,policy_agent,What is the maximum duration of an M.Tech. programme under the PG regulations for students admitted from 2022?
-llama3.2-3b__multi,P11,policy,1/3,0/3,policy_agent;schedule_agent,What are the prerequisites for the course Real Time Autonomous Systems?
-llama3.2-3b__multi,P12,policy,3/3,3/3,policy_agent,What is the maximum number of credits a full-time M.S. by Research student can register for in a regular semester?
-llama3.2-3b__multi,P13,policy,0/3,0/3,helpdesk_orchestrator,In which year did IIT Jodhpur start the B.Tech. in Artificial Intelligence and Data Science?
-llama3.2-3b__multi,S01,schedule,3/3,3/3,schedule_agent,What is the slot for the course Autonomous Systems?
-llama3.2-3b__multi,S02,schedule,3/3,3/3,schedule_agent,How many 400 level electives have been floated by the Humanities department in this semester?
-llama3.2-3b__multi,S03,schedule,3/3,3/3,schedule_agent,Who is teaching CSL7570 this semester?
-llama3.2-3b__multi,S04,schedule,0/3,0/3,schedule_agent,On which days and at what time does the Computer Vision class meet?
-llama3.2-3b__multi,S05,schedule,0/3,3/3,schedule_agent,How many open electives are offered this semester?
-llama3.2-3b__multi,S06,schedule,0/3,3/3,schedule_agent,Which courses is the Electrical Engineering department offering this semester?
-llama3.2-3b__multi,S07,schedule,0/3,3/3,schedule_agent,Is the course Quantum Machine Learning offered this semester?
-qwen3-4b-instruct-2507-q4_K_M__multi,E01,email,3/3,3/3,email_agent,Write an email to the course instructor of CSL7570 that I need leave for 2 days
-qwen3-4b-instruct-2507-q4_K_M__multi,E02,email,3/3,3/3,email_agent,I had fever and missed the minor exam of Deep Learning. Draft an email to the instructor asking for a make-up exam.
-qwen3-4b-instruct-2507-q4_K_M__multi,E03,email,3/3,3/3,email_agent,"Draft a sick leave email to the instructor of Operating Systems for 3 days starting 4 November 2026. My name is Rahul Verma, roll number B23CS1042."
-qwen3-4b-instruct-2507-q4_K_M__multi,E04,email,3/3,3/3,email_agent,What is the email ID of the instructor teaching Bioethics?
-qwen3-4b-instruct-2507-q4_K_M__multi,O01,out_of_scope,3/3,-,helpdesk_orchestrator,What are the available dining options on the campus?
-qwen3-4b-instruct-2507-q4_K_M__multi,O02,out_of_scope,3/3,-,helpdesk_orchestrator,What is the best way to reach the campus from Jodhpur city center?
-qwen3-4b-instruct-2507-q4_K_M__multi,O03,out_of_scope,3/3,-,helpdesk_orchestrator,Who won the last IPL cricket tournament?
-qwen3-4b-instruct-2507-q4_K_M__multi,O04,out_of_scope,3/3,-,helpdesk_orchestrator,What is the Wi-Fi password for the central library?
-qwen3-4b-instruct-2507-q4_K_M__multi,O05,out_of_scope,3/3,-,helpdesk_orchestrator,What was the JEE Advanced closing rank for B.Tech. CSE admission at IIT Jodhpur in 2026?
-qwen3-4b-instruct-2507-q4_K_M__multi,O06,out_of_scope,3/3,-,helpdesk_orchestrator,How much is the hostel mess fee per month?
-qwen3-4b-instruct-2507-q4_K_M__multi,P01,policy,3/3,3/3,policy_agent,What is the attendance requirement to sit in the Major exam?
-qwen3-4b-instruct-2507-q4_K_M__multi,P02,policy,3/3,0/3,policy_agent,How many Open Elective credits do I need to earn in order to get a B.Tech. Degree?
-qwen3-4b-instruct-2507-q4_K_M__multi,P03,policy,3/3,3/3,policy_agent,What is the maximum duration allowed to complete a B.Tech. programme?
-qwen3-4b-instruct-2507-q4_K_M__multi,P04,policy,3/3,3/3,policy_agent,"I missed my major exam because I was hospitalised. Within how many days must I apply for a make-up examination, and to whom?"
-qwen3-4b-instruct-2507-q4_K_M__multi,P05,policy,3/3,3/3,policy_agent,How many grade points does a B- grade carry?
-qwen3-4b-instruct-2507-q4_K_M__multi,P06,policy,3/3,3/3,policy_agent,What are the eligibility criteria for a B.Tech. student to opt for a Minor?
-qwen3-4b-instruct-2507-q4_K_M__multi,P07,policy,3/3,3/3,policy_agent,How many credits must be completed to earn a Minor or an Interdisciplinary Specialization?
-qwen3-4b-instruct-2507-q4_K_M__multi,P08,policy,3/3,3/3,policy_agent,When is the Minor Examination for the first semester of AY 2026-27?
-qwen3-4b-instruct-2507-q4_K_M__multi,P09,policy,3/3,3/3,policy_agent,When is the Major Examination of the Summer Term 2026?
-qwen3-4b-instruct-2507-q4_K_M__multi,P10,policy,3/3,3/3,policy_agent,What is the maximum duration of an M.Tech. programme under the PG regulations for students admitted from 2022?
-qwen3-4b-instruct-2507-q4_K_M__multi,P11,policy,0/3,0/3,policy_agent,What are the prerequisites for the course Real Time Autonomous Systems?
-qwen3-4b-instruct-2507-q4_K_M__multi,P12,policy,3/3,3/3,policy_agent,What is the maximum number of credits a full-time M.S. by Research student can register for in a regular semester?
-qwen3-4b-instruct-2507-q4_K_M__multi,P13,policy,0/3,0/3,policy_agent,In which year did IIT Jodhpur start the B.Tech. in Artificial Intelligence and Data Science?
-qwen3-4b-instruct-2507-q4_K_M__multi,S01,schedule,3/3,3/3,schedule_agent,What is the slot for the course Autonomous Systems?
-qwen3-4b-instruct-2507-q4_K_M__multi,S02,schedule,3/3,3/3,schedule_agent,How many 400 level electives have been floated by the Humanities department in this semester?
-qwen3-4b-instruct-2507-q4_K_M__multi,S03,schedule,3/3,3/3,schedule_agent,Who is teaching CSL7570 this semester?
-qwen3-4b-instruct-2507-q4_K_M__multi,S04,schedule,0/3,0/3,schedule_agent,On which days and at what time does the Computer Vision class meet?
-qwen3-4b-instruct-2507-q4_K_M__multi,S05,schedule,3/3,3/3,schedule_agent,How many open electives are offered this semester?
-qwen3-4b-instruct-2507-q4_K_M__multi,S06,schedule,3/3,3/3,schedule_agent,Which courses is the Electrical Engineering department offering this semester?
-qwen3-4b-instruct-2507-q4_K_M__multi,S07,schedule,3/3,3/3,schedule_agent,Is the course Quantum Machine Learning offered this semester?
-qwen3-4b-instruct-2507-q4_K_M__single,E01,email,0/1,1/1,helpdesk_agent,Write an email to the course instructor of CSL7570 that I need leave for 2 days
-qwen3-4b-instruct-2507-q4_K_M__single,E02,email,0/1,1/1,helpdesk_agent,I had fever and missed the minor exam of Deep Learning. Draft an email to the instructor asking for a make-up exam.
-qwen3-4b-instruct-2507-q4_K_M__single,E03,email,1/1,1/1,helpdesk_agent,"Draft a sick leave email to the instructor of Operating Systems for 3 days starting 4 November 2026. My name is Rahul Verma, roll number B23CS1042."
-qwen3-4b-instruct-2507-q4_K_M__single,E04,email,0/1,1/1,helpdesk_agent,What is the email ID of the instructor teaching Bioethics?
-qwen3-4b-instruct-2507-q4_K_M__single,O01,out_of_scope,1/1,-,helpdesk_agent,What are the available dining options on the campus?
-qwen3-4b-instruct-2507-q4_K_M__single,O02,out_of_scope,1/1,-,helpdesk_agent,What is the best way to reach the campus from Jodhpur city center?
-qwen3-4b-instruct-2507-q4_K_M__single,O03,out_of_scope,1/1,-,helpdesk_agent,Who won the last IPL cricket tournament?
-qwen3-4b-instruct-2507-q4_K_M__single,O04,out_of_scope,1/1,-,helpdesk_agent,What is the Wi-Fi password for the central library?
-qwen3-4b-instruct-2507-q4_K_M__single,O05,out_of_scope,1/1,-,helpdesk_agent,What was the JEE Advanced closing rank for B.Tech. CSE admission at IIT Jodhpur in 2026?
-qwen3-4b-instruct-2507-q4_K_M__single,O06,out_of_scope,1/1,-,helpdesk_agent,How much is the hostel mess fee per month?
-qwen3-4b-instruct-2507-q4_K_M__single,P01,policy,1/1,1/1,helpdesk_agent,What is the attendance requirement to sit in the Major exam?
-qwen3-4b-instruct-2507-q4_K_M__single,P02,policy,0/1,0/1,helpdesk_agent,How many Open Elective credits do I need to earn in order to get a B.Tech. Degree?
-qwen3-4b-instruct-2507-q4_K_M__single,P03,policy,1/1,1/1,helpdesk_agent,What is the maximum duration allowed to complete a B.Tech. programme?
-qwen3-4b-instruct-2507-q4_K_M__single,P04,policy,1/1,1/1,helpdesk_agent,"I missed my major exam because I was hospitalised. Within how many days must I apply for a make-up examination, and to whom?"
-qwen3-4b-instruct-2507-q4_K_M__single,P05,policy,0/1,0/1,helpdesk_agent,How many grade points does a B- grade carry?
-qwen3-4b-instruct-2507-q4_K_M__single,P06,policy,1/1,1/1,helpdesk_agent,What are the eligibility criteria for a B.Tech. student to opt for a Minor?
-qwen3-4b-instruct-2507-q4_K_M__single,P07,policy,1/1,1/1,helpdesk_agent,How many credits must be completed to earn a Minor or an Interdisciplinary Specialization?
-qwen3-4b-instruct-2507-q4_K_M__single,P08,policy,0/1,0/1,helpdesk_agent,When is the Minor Examination for the first semester of AY 2026-27?
-qwen3-4b-instruct-2507-q4_K_M__single,P09,policy,0/1,0/1,helpdesk_agent,When is the Major Examination of the Summer Term 2026?
-qwen3-4b-instruct-2507-q4_K_M__single,P10,policy,0/1,0/1,helpdesk_agent,What is the maximum duration of an M.Tech. programme under the PG regulations for students admitted from 2022?
-qwen3-4b-instruct-2507-q4_K_M__single,P11,policy,0/1,0/1,helpdesk_agent,What are the prerequisites for the course Real Time Autonomous Systems?
-qwen3-4b-instruct-2507-q4_K_M__single,P12,policy,1/1,1/1,helpdesk_agent,What is the maximum number of credits a full-time M.S. by Research student can register for in a regular semester?
-qwen3-4b-instruct-2507-q4_K_M__single,P13,policy,0/1,0/1,helpdesk_agent,In which year did IIT Jodhpur start the B.Tech. in Artificial Intelligence and Data Science?
-qwen3-4b-instruct-2507-q4_K_M__single,S01,schedule,1/1,1/1,helpdesk_agent,What is the slot for the course Autonomous Systems?
-qwen3-4b-instruct-2507-q4_K_M__single,S02,schedule,1/1,1/1,helpdesk_agent,How many 400 level electives have been floated by the Humanities department in this semester?
-qwen3-4b-instruct-2507-q4_K_M__single,S03,schedule,1/1,1/1,helpdesk_agent,Who is teaching CSL7570 this semester?
-qwen3-4b-instruct-2507-q4_K_M__single,S04,schedule,0/1,1/1,helpdesk_agent,On which days and at what time does the Computer Vision class meet?
-qwen3-4b-instruct-2507-q4_K_M__single,S05,schedule,1/1,1/1,helpdesk_agent,How many open electives are offered this semester?
-qwen3-4b-instruct-2507-q4_K_M__single,S06,schedule,1/1,1/1,helpdesk_agent,Which courses is the Electrical Engineering department offering this semester?
-qwen3-4b-instruct-2507-q4_K_M__single,S07,schedule,0/1,0/1,helpdesk_agent,Is the course Quantum Machine Learning offered this semester?
+llama3.1-8b__multi,E01,email,0/3,3/3,email_agent,Write an email to the course instructor of CSL7570 that I need leave for 2 days
+llama3.1-8b__multi,E02,email,2/3,2/3,email_agent,I had fever and missed the minor exam of Deep Learning. Draft an email to the instructor asking for a make-up exam.
+llama3.1-8b__multi,E03,email,1/3,3/3,email_agent,"Draft a sick leave email to the instructor of Operating Systems for 3 days starting 4 November 2026. My name is Rahul Verma, roll number B23CS1042."
+llama3.1-8b__multi,E04,email,3/3,3/3,email_agent,What is the email ID of the instructor teaching Bioethics?
+llama3.1-8b__multi,O01,out_of_scope,3/3,-,helpdesk_orchestrator,What are the available dining options on the campus?
+llama3.1-8b__multi,O02,out_of_scope,3/3,-,helpdesk_orchestrator,What is the best way to reach the campus from Jodhpur city center?
+llama3.1-8b__multi,O03,out_of_scope,3/3,-,helpdesk_orchestrator,Who won the last IPL cricket tournament?
+llama3.1-8b__multi,O04,out_of_scope,3/3,-,helpdesk_orchestrator,What is the Wi-Fi password for the central library?
+llama3.1-8b__multi,O05,out_of_scope,3/3,-,helpdesk_orchestrator,What was the JEE Advanced closing rank for B.Tech. CSE admission at IIT Jodhpur in 2026?
+llama3.1-8b__multi,O06,out_of_scope,3/3,-,helpdesk_orchestrator,How much is the hostel mess fee per month?
+llama3.1-8b__multi,P01,policy,3/3,3/3,policy_agent,What is the attendance requirement to sit in the Major exam?
+llama3.1-8b__multi,P02,policy,3/3,0/3,policy_agent,How many Open Elective credits do I need to earn in order to get a B.Tech. Degree?
+llama3.1-8b__multi,P03,policy,3/3,3/3,policy_agent,What is the maximum duration allowed to complete a B.Tech. programme?
+llama3.1-8b__multi,P04,policy,3/3,3/3,policy_agent,"I missed my major exam because I was hospitalised. Within how many days must I apply for a make-up examination, and to whom?"
+llama3.1-8b__multi,P05,policy,3/3,3/3,policy_agent,How many grade points does a B- grade carry?
+llama3.1-8b__multi,P06,policy,3/3,3/3,policy_agent,What are the eligibility criteria for a B.Tech. student to opt for a Minor?
+llama3.1-8b__multi,P07,policy,3/3,3/3,policy_agent,How many credits must be completed to earn a Minor or an Interdisciplinary Specialization?
+llama3.1-8b__multi,P08,policy,3/3,3/3,policy_agent,When is the Minor Examination for the first semester of AY 2026-27?
+llama3.1-8b__multi,P09,policy,3/3,3/3,policy_agent,When is the Major Examination of the Summer Term 2026?
+llama3.1-8b__multi,P10,policy,3/3,3/3,policy_agent,What is the maximum duration of an M.Tech. programme under the PG regulations for students admitted from 2022?
+llama3.1-8b__multi,P11,policy,3/3,3/3,policy_agent,What are the prerequisites for the course Real Time Autonomous Systems?
+llama3.1-8b__multi,P12,policy,3/3,3/3,policy_agent,What is the maximum number of credits a full-time M.S. by Research student can register for in a regular semester?
+llama3.1-8b__multi,P13,policy,0/3,0/3,policy_agent,In which year did IIT Jodhpur start the B.Tech. in Artificial Intelligence and Data Science?
+llama3.1-8b__multi,S01,schedule,3/3,3/3,schedule_agent,What is the slot for the course Autonomous Systems?
+llama3.1-8b__multi,S02,schedule,3/3,3/3,schedule_agent,How many 400 level electives have been floated by the Humanities department in this semester?
+llama3.1-8b__multi,S03,schedule,3/3,3/3,schedule_agent,Who is teaching CSL7570 this semester?
+llama3.1-8b__multi,S04,schedule,0/3,3/3,schedule_agent,On which days and at what time does the Computer Vision class meet?
+llama3.1-8b__multi,S05,schedule,1/3,3/3,schedule_agent,How many open electives are offered this semester?
+llama3.1-8b__multi,S06,schedule,3/3,3/3,schedule_agent,Which courses is the Electrical Engineering department offering this semester?
+llama3.1-8b__multi,S07,schedule,3/3,3/3,schedule_agent,Is the course Quantum Machine Learning offered this semester?
+qwen3-8b__multi,E01,email,3/3,3/3,email_agent,Write an email to the course instructor of CSL7570 that I need leave for 2 days
+qwen3-8b__multi,E02,email,0/3,3/3,email_agent,I had fever and missed the minor exam of Deep Learning. Draft an email to the instructor asking for a make-up exam.
+qwen3-8b__multi,E03,email,3/3,3/3,email_agent,"Draft a sick leave email to the instructor of Operating Systems for 3 days starting 4 November 2026. My name is Rahul Verma, roll number B23CS1042."
+qwen3-8b__multi,E04,email,3/3,3/3,email_agent,What is the email ID of the instructor teaching Bioethics?
+qwen3-8b__multi,O01,out_of_scope,3/3,-,helpdesk_orchestrator,What are the available dining options on the campus?
+qwen3-8b__multi,O02,out_of_scope,3/3,-,helpdesk_orchestrator,What is the best way to reach the campus from Jodhpur city center?
+qwen3-8b__multi,O03,out_of_scope,3/3,-,helpdesk_orchestrator,Who won the last IPL cricket tournament?
+qwen3-8b__multi,O04,out_of_scope,3/3,-,helpdesk_orchestrator,What is the Wi-Fi password for the central library?
+qwen3-8b__multi,O05,out_of_scope,3/3,-,helpdesk_orchestrator,What was the JEE Advanced closing rank for B.Tech. CSE admission at IIT Jodhpur in 2026?
+qwen3-8b__multi,O06,out_of_scope,3/3,-,helpdesk_orchestrator,How much is the hostel mess fee per month?
+qwen3-8b__multi,P01,policy,3/3,3/3,policy_agent,What is the attendance requirement to sit in the Major exam?
+qwen3-8b__multi,P02,policy,3/3,0/3,policy_agent,How many Open Elective credits do I need to earn in order to get a B.Tech. Degree?
+qwen3-8b__multi,P03,policy,3/3,3/3,policy_agent,What is the maximum duration allowed to complete a B.Tech. programme?
+qwen3-8b__multi,P04,policy,3/3,3/3,policy_agent,"I missed my major exam because I was hospitalised. Within how many days must I apply for a make-up examination, and to whom?"
+qwen3-8b__multi,P05,policy,3/3,3/3,policy_agent,How many grade points does a B- grade carry?
+qwen3-8b__multi,P06,policy,3/3,3/3,policy_agent,What are the eligibility criteria for a B.Tech. student to opt for a Minor?
+qwen3-8b__multi,P07,policy,3/3,3/3,policy_agent,How many credits must be completed to earn a Minor or an Interdisciplinary Specialization?
+qwen3-8b__multi,P08,policy,3/3,3/3,policy_agent,When is the Minor Examination for the first semester of AY 2026-27?
+qwen3-8b__multi,P09,policy,0/3,0/3,policy_agent,When is the Major Examination of the Summer Term 2026?
+qwen3-8b__multi,P10,policy,3/3,3/3,policy_agent,What is the maximum duration of an M.Tech. programme under the PG regulations for students admitted from 2022?
+qwen3-8b__multi,P11,policy,1/3,1/3,policy_agent,What are the prerequisites for the course Real Time Autonomous Systems?
+qwen3-8b__multi,P12,policy,3/3,3/3,policy_agent,What is the maximum number of credits a full-time M.S. by Research student can register for in a regular semester?
+qwen3-8b__multi,P13,policy,0/3,0/3,helpdesk_orchestrator,In which year did IIT Jodhpur start the B.Tech. in Artificial Intelligence and Data Science?
+qwen3-8b__multi,S01,schedule,3/3,3/3,schedule_agent,What is the slot for the course Autonomous Systems?
+qwen3-8b__multi,S02,schedule,3/3,3/3,schedule_agent,How many 400 level electives have been floated by the Humanities department in this semester?
+qwen3-8b__multi,S03,schedule,3/3,3/3,schedule_agent,Who is teaching CSL7570 this semester?
+qwen3-8b__multi,S04,schedule,1/3,3/3,schedule_agent,On which days and at what time does the Computer Vision class meet?
+qwen3-8b__multi,S05,schedule,3/3,3/3,schedule_agent,How many open electives are offered this semester?
+qwen3-8b__multi,S06,schedule,3/3,3/3,schedule_agent,Which courses is the Electrical Engineering department offering this semester?
+qwen3-8b__multi,S07,schedule,3/3,1/3,schedule_agent,Is the course Quantum Machine Learning offered this semester?
+qwen3-8b__single,E01,email,1/1,1/1,helpdesk_agent,Write an email to the course instructor of CSL7570 that I need leave for 2 days
+qwen3-8b__single,E02,email,0/1,1/1,helpdesk_agent,I had fever and missed the minor exam of Deep Learning. Draft an email to the instructor asking for a make-up exam.
+qwen3-8b__single,E03,email,1/1,1/1,helpdesk_agent,"Draft a sick leave email to the instructor of Operating Systems for 3 days starting 4 November 2026. My name is Rahul Verma, roll number B23CS1042."
+qwen3-8b__single,E04,email,1/1,1/1,helpdesk_agent,What is the email ID of the instructor teaching Bioethics?
+qwen3-8b__single,O01,out_of_scope,1/1,-,helpdesk_agent,What are the available dining options on the campus?
+qwen3-8b__single,O02,out_of_scope,1/1,-,helpdesk_agent,What is the best way to reach the campus from Jodhpur city center?
+qwen3-8b__single,O03,out_of_scope,1/1,-,helpdesk_agent,Who won the last IPL cricket tournament?
+qwen3-8b__single,O04,out_of_scope,1/1,-,helpdesk_agent,What is the Wi-Fi password for the central library?
+qwen3-8b__single,O05,out_of_scope,1/1,-,helpdesk_agent,What was the JEE Advanced closing rank for B.Tech. CSE admission at IIT Jodhpur in 2026?
+qwen3-8b__single,O06,out_of_scope,1/1,-,helpdesk_agent,How much is the hostel mess fee per month?
+qwen3-8b__single,P01,policy,1/1,1/1,helpdesk_agent,What is the attendance requirement to sit in the Major exam?
+qwen3-8b__single,P02,policy,1/1,0/1,helpdesk_agent,How many Open Elective credits do I need to earn in order to get a B.Tech. Degree?
+qwen3-8b__single,P03,policy,1/1,1/1,helpdesk_agent,What is the maximum duration allowed to complete a B.Tech. programme?
+qwen3-8b__single,P04,policy,1/1,1/1,helpdesk_agent,"I missed my major exam because I was hospitalised. Within how many days must I apply for a make-up examination, and to whom?"
+qwen3-8b__single,P05,policy,1/1,1/1,helpdesk_agent,How many grade points does a B- grade carry?
+qwen3-8b__single,P06,policy,1/1,1/1,helpdesk_agent,What are the eligibility criteria for a B.Tech. student to opt for a Minor?
+qwen3-8b__single,P07,policy,1/1,1/1,helpdesk_agent,How many credits must be completed to earn a Minor or an Interdisciplinary Specialization?
+qwen3-8b__single,P08,policy,0/1,0/1,helpdesk_agent,When is the Minor Examination for the first semester of AY 2026-27?
+qwen3-8b__single,P09,policy,0/1,0/1,helpdesk_agent,When is the Major Examination of the Summer Term 2026?
+qwen3-8b__single,P10,policy,1/1,1/1,helpdesk_agent,What is the maximum duration of an M.Tech. programme under the PG regulations for students admitted from 2022?
+qwen3-8b__single,P11,policy,0/1,0/1,helpdesk_agent,What are the prerequisites for the course Real Time Autonomous Systems?
+qwen3-8b__single,P12,policy,1/1,1/1,helpdesk_agent,What is the maximum number of credits a full-time M.S. by Research student can register for in a regular semester?
+qwen3-8b__single,P13,policy,0/1,0/1,helpdesk_agent,In which year did IIT Jodhpur start the B.Tech. in Artificial Intelligence and Data Science?
+qwen3-8b__single,S01,schedule,1/1,1/1,helpdesk_agent,What is the slot for the course Autonomous Systems?
+qwen3-8b__single,S02,schedule,1/1,1/1,helpdesk_agent,How many 400 level electives have been floated by the Humanities department in this semester?
+qwen3-8b__single,S03,schedule,1/1,1/1,helpdesk_agent,Who is teaching CSL7570 this semester?
+qwen3-8b__single,S04,schedule,1/1,1/1,helpdesk_agent,On which days and at what time does the Computer Vision class meet?
+qwen3-8b__single,S05,schedule,1/1,1/1,helpdesk_agent,How many open electives are offered this semester?
+qwen3-8b__single,S06,schedule,1/1,1/1,helpdesk_agent,Which courses is the Electrical Engineering department offering this semester?
+qwen3-8b__single,S07,schedule,1/1,1/1,helpdesk_agent,Is the course Quantum Machine Learning offered this semester?
